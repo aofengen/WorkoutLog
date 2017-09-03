@@ -7,6 +7,7 @@ const app = express();
 // app.get('/', function(reg,res){
 // 	res.sendFile(__dirname + '/index.html');
 // })
+app.use(require('./middleware/headers'));
 
 app.use('/api/test', function(req,res){
 	res.send('Hello World');
