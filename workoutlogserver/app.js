@@ -40,8 +40,11 @@ let User = sequelize.define('user', {
 	passwordhash: Sequelize.STRING,
 });
 
-User.sync()
-//User.sync({force: true});
+User.sync();
+/*
+THIS WILL DROP THE ENTIRE USER TABLE!!! WARNING!!!
+// User.sync({force: true});
+*/
 app.use(bodyParser.json());
 
 app.post('/api/user', function(req, res){
