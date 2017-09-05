@@ -1,6 +1,14 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const sequelize = require('./db.js');
+const User = sequelize.import('./models/user.js');
+
+User.sync();
+/* THIS WILL DROP THE ENTIRE USER TABLE!!! WARNING!!!
+ User.sync({force: true}); */
+app.use(bodyParser.json());
+
 // const http = require('http').Server(app);
 
 // app.use(express.static(__dirname + '/public'));
@@ -18,34 +26,6 @@ app.use('/api/test', function(req,res){
 app.listen(3000, function(){
 	console.log("Listening on port 3000");
 });
-
-const Sequelize = require('sequelize');
-let sequelize = new Sequelize('workoutlog', 'postgres', '9074dewberry1136',{
-	host: 'localhost',
-	dialect: 'postgres'
-});
-
-sequelize.authenticate().then(
-	function(){
-		console.log('connected to workoutlog postgres db');
-	},
-	function(err){
-		console.log(err);
-	}
-);
-
-//build a user model in sqllize
-let User = sequelize.define('user', {
-	username: Sequelize.STRING,
-	passwordhash: Sequelize.STRING,
-});
-
-User.sync();
-/*
-THIS WILL DROP THE ENTIRE USER TABLE!!! WARNING!!!
-// User.sync({force: true});
-*/
-app.use(bodyParser.json());
 
 app.post('/api/user', function(req, res){
 	let username = req.body.user.username;
