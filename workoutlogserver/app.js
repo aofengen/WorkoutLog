@@ -13,13 +13,13 @@ const User = sequelize.import(__dirname + '\/models\/user.js');
 // })
 
 
-User.sync();
-/* THIS WILL DROP THE ENTIRE USER TABLE!!! WARNING!!!
- User.sync({force: true}); */
+// User.sync();
+/* THIS WILL DROP THE ENTIRE USER TABLE!!! WARNING!!! */
+ User.sync({force: true});
 app.use(bodyParser.json());
+app.use(require('./middleware/headers'));
 app.use('/api/user', require('./routes/user.js'));
 app.use('/api/login', require('./routes/session.js'));
-app.use(require('./middleware/headers'));
 app.use(require('./middleware/validate-session.js'));
 
 app.use('/api/test', function(req,res){
