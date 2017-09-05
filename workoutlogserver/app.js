@@ -17,6 +17,7 @@ User.sync();
  User.sync({force: true}); */
 app.use(bodyParser.json());
 app.use('/api/user', require('./routes/user.js'));
+app.use('/api/login', require('./routes/session.js'));
 app.use(require('./middleware/headers'));
 
 app.use('/api/test', function(req,res){
