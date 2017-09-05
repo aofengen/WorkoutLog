@@ -5,6 +5,7 @@ const Definition = sequelize.import('../models/definition.js');
 
 router.post('/', function(req, res) {
 	//variables
+	console.log(req.body);
 	let description = req.body.definition.desc;
 	let logType = req.body.definition.type;
 	let owner = req.user.id;
@@ -19,7 +20,7 @@ router.post('/', function(req, res) {
 		}).then(
 			function createSuccess(definition) {
 				//send a response as json
-				res.join({
+				res.json({
 					definition: definition
 				});
 			},
@@ -36,13 +37,13 @@ Definition
 .findAll({
 	where: {owner: userid}
 	})
-
 	.then(
 		function findAllSuccess(data){
-			//console.log(data);
+			console.log(data);
 			res.json(data);
 		},
 		function findAllError(err){
+			console.log("FAIL");
 			res.send(500, err.message);
 		}
 	);
