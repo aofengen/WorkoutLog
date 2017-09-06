@@ -1,31 +1,28 @@
 const router = require('express').Router();
 const sequelize = require('../db.js');
+const Log = sequelize.import('../models/log');
 const User = sequelize.import('../models/user.js');
 const Definition = sequelize.import('../models/definition.js');
 
 router.post('/', function(req, res) {
-	//variables
-	console.log(req.body);
-	let description = req.body.definition.desc;
-	let logType = req.body.definition.type;
-	let owner = req.user.id;
+	let description = req.body.log.description;
+	let result = req.body.log.result;
+	let user = req.user;
+	let definition = req.body.log.def;
 
-	//methods
-	Definition
-	//objects must match the midel
+	Log
 		.create({
 			description: description,
-			logType: logType,
-			owner: owner
-		}).then(
-			function createSuccess(definition) {
-				//send a response as json
-				res.json({
-					definition: definition
-				});
+			result: result,
+			owner: user.id,
+			def: definition
+		})
+		.then(
+			function createSuccess(log) {
+				res.json(log);
 			},
 			function createError(err) {
-				res.send(500, err.message);
+				res.send(500, err.message)
 			}
 		);
 });
@@ -33,8 +30,8 @@ router.post('/', function(req, res) {
 router.get('/', function(req,res) {
 	let userid = req.user.id;
 
-Definition
-.findAll({
+	Log
+	.findAll({
 	where: {owner: userid}
 	})
 	.then(
