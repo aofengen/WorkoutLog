@@ -17,7 +17,7 @@
 			<li><a href="#define" data-toggle="tab">Define</a></li>
 			<li><a href="#log" data-toggle="tab">Log</a></li>
 			<li><a href="#history" data-toggle="tab">View History</a></li>
-			<li><a href="#" id="testAPI">Test API</a></li>
+			<a href="#update-log" data-toggle="tab" class="disabled" type="hidden"></a>
 		</ul>
 
 		<div class="container">
@@ -51,8 +51,20 @@
 					<label>Workout Select:</label>
 					<select class="form-control" id="log-definition"></select>
 					<label>Notes</label>
-					<textarea id="log-definition" rows="3" class="form-control"></textarea>
+					<textarea id="log-description" rows="3" class="form-control"></textarea>
 					<button class="btn btn-primary" id="log-save">Save</button>
+				</div>
+				<div class="tab-pane fade" id="update-log">
+					<h2>Log Update</h2>
+					<label>Result</label>
+					<input type="hidden" class="form-control" id="update-id" />
+					<input type="text" class="form-control" id="update-result" />
+					<label>Workout Select:</label>
+					<select id="update-definition" class="form-control"></select>
+					<label>Notes</label>
+					<textarea id="update-description" rows="3" class="form-control"></textarea>
+					<br>
+					<button class="btn btn-primary" id="log-update">Save</button>
 				</div>
 				<div class="tab-pane fade" id="history">
 					<h2>History</h2>

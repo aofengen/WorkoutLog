@@ -34,7 +34,10 @@ $(function() {
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		let target = $(e.target).attr("href"); //activated tab
 		if (target === "#log") {
-			WorkoutLog.log.setDefinitions();
+			WorkoutLog.log.setDefinitions("log");
+		}
+		if (target === "#update-log") {
+			WorkoutLog.log.setDefinitions("update");
 		}
 		if (target === "#history") {
 			WorkoutLog.log.setHistory();
