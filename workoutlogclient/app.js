@@ -31,7 +31,7 @@ $(function() {
 	});
 
 	//bind tab change events
-	$("a[data-toggle='tab']").on("shown.bs.tab", function(e) {
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		let target = $(e.target).attr("href"); //activated tab
 		if (target === "#log") {
 			WorkoutLog.log.setDefinitions();
@@ -41,17 +41,6 @@ $(function() {
 		}
 	});
 
-	//bind enter key (13)
-	$(document).on("keypress", function(e) {
-		if (e.which === 13) {
-			if($("#signup-modal").is(":visible")) {
-				$("#signup").trigger("click");
-			}
-			if($("#login-modal").is(":visible")) {
-				$("#login").trigger("click");
-			}
-		}
-	});
 	let token = window.localStorage.getItem("sessionToken");
 	if (token) {
 		WorkoutLog.setAuthHeader(token);

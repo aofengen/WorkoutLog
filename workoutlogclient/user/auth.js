@@ -31,6 +31,9 @@ $(function(){
 				$("#signup-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
+				$("#su_username").val("");
+				$("#su_password").val("");
+				$('a[href="#define"]').tab("show"); //routing
 			}).fail(function() {
 				$("#su_error").text("There was an issue with sign up").show();
 			})
@@ -65,6 +68,9 @@ $(function(){
 				$("#login-modal").modal("hide");
 				$(".disabled").removeClass("disabled");
 				$("#loginout").text("Logout");
+				$("#li_username").val("");
+				$("#li_password").val("");
+				$('a[href="#define"]').tab("show");
 			}).fail(function (){
 				$("#li_error").text("There was an issue with the login").show();
 			});
